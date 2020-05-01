@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>AP COVID</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
+
+<style>
+body {
+  background-image: url('{% static "images/covidbackground.jpeg" %}');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+table, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 4px;
+  text-align: left;
+  width: 100%
+}
+tfoot {
+  background-color: black;
+  color: black;
+  text-align: center;
+  font-weight: 900;
+  }
+table tr:nth-child(even) {
+  background-color: #eee;
+
+}
+table tr:nth-child(odd) {
+ background-color: #dddddd;
+}
+table th{
+  background-color: black;
+  color: white;
+  text-align:center;
+}
+ul
+{
+  display:flex;
+  list-style:none;
+
+}
+
+</style>
+</head>
+<body>
+{% block content %}
+
+<h2 align="center">Andhra Pradesh COVID Report </h2>
+<h4 align="center">Last Updated : {{dt}} </h4>
+<ul align="center" width="75%">
+
+        <li>
+            <table id="02" width="100%">
+                <tr>
+                    <th>District</th>
+                    <th>Today's Count</th>
+                    <th>Count</th>
+                    <th>Recovered</th>
+                    <th>Deceased</th>
+                </tr>
+		{% for dist in dists %}
+                <tr>
+                    <td>{{dist.name}}</td>
+                    <td>{{dist.lcount}}</td>
+                    <td>{{dist.count}}</td>
+                    <td>{{dist.recovered}}</td>
+                    <td>{{dist.deceased}}</td>
+                </tr>
+		{% endfor %}
+                <tfoot>
+                <tr>
+                    <td>Total </td>
+                    <td>{{Ttotal}}</td>
+                    <td>{{Total}}</td>
+                    <td>{{Recovered}}</td>
+                    <td>{{Deceased}}</td>
+                </tr>
+                </tfoot>
+            </table>
+{% endblock %}
+
+    </li>
+    <li>
+       <img src="/apimage" alt="" height="100%", width="75%">
+    </li>
+
+    </ul>
+	<script> src="{%static "js/main.js" %}" </script>
+
+</body>
+</html>

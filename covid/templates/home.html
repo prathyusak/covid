@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID</title>
+</head>
+<body>
+{% block content %}
+<h1> Hello {{name}}</h1>
+<form action="upload" method="post">
+    {% csrf_token %}
+    Enter PID:<input type = "number" name="pid"><br>
+    Enter Age:<input type = "number" name="age"><br>
+    Enter Gender:<input type = "text" name="gender"><br>
+    Enter District:<input type = "text" name="district"><br>
+    Enter Locality:<input type = "text" name="locality"><br>
+    Enter Reported Date:<input type = "date" name="rdate"><br>
+    Enter Notes:<input type = "text" name="notes"><br>
+    <input type="submit">
+</form>
+{% endblock %}
+</body>
+</html>
