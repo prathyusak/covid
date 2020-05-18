@@ -1,98 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>AP COVID</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
-
-<style>
-body {
-  background-image: url('{% static "images/covidbackground.jpeg" %}');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-table, td, th {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 4px;
-  text-align: left;
-  width: 100%
-}
-tfoot {
-  background-color: black;
-  color: black;
-  text-align: center;
-  font-weight: 900;
-  }
-table tr:nth-child(even) {
-  background-color: #eee;
-
-}
-table tr:nth-child(odd) {
- background-color: #dddddd;
-}
-table th{
-  background-color: black;
-  color: white;
-  text-align:center;
-}
-ul
-{
-  display:flex;
-  list-style:none;
-
-}
-
-</style>
+  <title>AP COVID</title>
+  <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+      <link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}"/>
 </head>
 <body>
-{% block content %}
-
-<h2 align="center">Andhra Pradesh COVID Report </h2>
-<h4 align="center">Last Updated : {{dt}} </h4>
-<ul align="center" width="75%">
-
-        <li>
-            <table id="02" width="100%">
-                <tr>
-                    <th>District</th>
-                    <th>Today's Count</th>
-                    <th>Count</th>
-                    <th>Recovered</th>
-                    <th>Deceased</th>
+  <nav class="zone green">
+  	<ul class="main-nav" >
+  		<li><a href="">Home</a></li>
+  		<li><a href="./form.html">Statistics</a></li>
+  		<li class="push"><a href="">Last Updated: {{dt}}</a></li>
+  	</ul>
+  </nav>
+  <marquee onmouseout="this.start();" onmouseover="this.stop();">
+<span id="Label5"><b><font color="Green">Stay Home. Stay Safe.</font></b></span>
+</marquee>
+    <div class="zone black grid-wrapper">
+  	<div class="box zone blue">Todays Cases<br/>{{Ttotal}}</div>
+      <div class="box zone purple">Confirmed Cases<br/>{{Total}}</div>
+      <div class="box zone green">Cured<br/>{{Recovered}}</div>
+      <div class="box zone red">Deceased<br/>{{Deceased}}</div>
+  </div>
+  <div class="zone black expand"><img src="{% static "images\precautions.png" %}" alt=" " width=100% height=auto /></div>
+      <div class="containter zone black">
+                <table class="secondtable" >
+                    <caption>Districtwise Report</caption>
+                <tr align="center" style="font-weight:bold; background-color:#99CCFF">
+                <td>Name of the District</td>
+                <td>New Cases</td>
+                <td>Confirmed Cases</td>
+                <td>Cured/ Discharged</td>
+                <td >Deceased</td>
                 </tr>
-		{% for dist in dists %}
-                <tr>
-                    <td>{{dist.name}}</td>
-                    <td>{{dist.lcount}}</td>
-                    <td>{{dist.count}}</td>
-                    <td>{{dist.recovered}}</td>
-                    <td>{{dist.deceased}}</td>
+                    {% for dist in dists %}
+                                <tr>
+                                    <td align="left">{{dist.name}}</td>
+                                    <td align="center">{{dist.lcount}}</td>
+                                    <td align="center">{{dist.count}}</td>
+                                    <td align="center">{{dist.recovered}}</td>
+                                    <td align="center">{{dist.deceased}}</td>
+                                </tr>
+                        {% endfor %}
+                <tr style="font-weight:bold">
+                <td>Total</td>
+                <td align="center">
+                <span id="lblTotalConfirmed">{{Ttotal}}</span>
+                </td>
+                <td align="center">
+                <span id="lblTotalConfirmed">{{Total}}</span>
+                </td>
+                <td align="center">
+                <span id="lblTotal_Discharged">{{Recovered}}</span>
+                </td>
+                <td align="center">
+                <span id="lblTotal_Deaths">{{Deceased}}</span>
+                </td>
                 </tr>
-		{% endfor %}
-                <tfoot>
-                <tr>
-                    <td>Total </td>
-                    <td>{{Ttotal}}</td>
-                    <td>{{Total}}</td>
-                    <td>{{Recovered}}</td>
-                    <td>{{Deceased}}</td>
-                </tr>
-                </tfoot>
-            </table>
-{% endblock %}
+                </table>
 
-    </li>
-    <li>
-       <img src="/apimage" alt="" height="100%", width="75%">
-    </li>
-
-    </ul>
-	<script> src="{%static "js/main.js" %}" </script>
-
+            <img src="data:image/png;base64,{{image1}}" alt="some text to display to your users when the image does not show correctly" width=100% height=auto />
+    </div>
+  <div class="zone black expand"><img src="data:image/png;base64,{{image2}}" alt=" " width=100% height=auto /></div>
+  <div class="zone black expand"><img src="{% static "images\stay_home.jpg" %}" alt=" " width=100% height=auto /></div>
+  <footer class="zone blue">Made by Prathyusha</footer>
 </body>
 </html>
